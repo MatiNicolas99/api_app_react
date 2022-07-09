@@ -11,11 +11,14 @@ export const App = () => {
   const initUrl = "https://rickandmortyapi.com/api/character";
 
   const fecthData = async (url) => {
-    const fetch_datos = await fetch(url);
-    const data = await fetch_datos.json();
-    const resultados = setCharacter(data.results);
-    const informacion = setInfo(data.info);
-
+    try {
+      const fetch_datos = await fetch(url);
+      const data = await fetch_datos.json();
+      const resultados = setCharacter(data.results);
+      const informacion = setInfo(data.info);  
+    } catch (error) {
+      console.log(error)
+    }
   };
   const filtroPersonajes = characters.filter(personaje => personaje.name.toLowerCase().includes(texto.toLocaleLowerCase()))
   
